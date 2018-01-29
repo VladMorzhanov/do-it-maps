@@ -44,14 +44,13 @@ export function login (email, pwd) {
   })
 }
 
-export function getUser (token, secret) {
+export function getUser (token) {
   return axios({
     headers: {
-      'key': token,
-      'secret': secret
+      'x-token': token
     },
     method: 'GET',
-    url: API_URL + '/twitter/user'
+    url: API_URL + 'user'
   })
 }
 

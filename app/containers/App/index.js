@@ -47,24 +47,24 @@ export class App extends React.PureComponent {
         <Switch>
           <Route exact path='/' render={() => (
             this.checkAuthorized() ? (
-              <Home/>
+              <Home />
             ) : (
-              <Redirect to="/auth"/>
+              <Redirect to='/auth' />
             )
-          )}/>
+          )} />
           <Route path='/auth' render={() => (
             !this.checkAuthorized() ? (
-              <Auth/>
+              <Auth />
             ) : (
-              <Redirect to="/"/>
+              <Redirect to='/' />
             )
-          )}/>
-          <Route path='/about' component={About}/>
-          <Route path='*' exact={true} component={NotFound}/>
+          )} />
+          <Route path='/about' component={About} />
+          <Route path='*' exact component={NotFound} />
         </Switch>
         <Messages
           messages={this.props.messages}
-          removeMessage={this.props.removeMessage}/>
+          removeMessage={this.props.removeMessage} />
       </div>
     )
   }
