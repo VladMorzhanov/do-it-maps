@@ -14,7 +14,13 @@ const makeSelectLoaded = () => createSelector(
   (globalState) => globalState.get('loaded')
 )
 
+const makeSelectToken = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('token')
+)
+
 export {
   makeSelectLocation,
-  makeSelectLoaded
+  makeSelectLoaded,
+  makeSelectToken
 }

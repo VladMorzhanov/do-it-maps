@@ -20,9 +20,6 @@ import LanguageProvider from 'containers/LanguageProvider'
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico'
-import '!file-loader?name=[name].[ext]!./images/favicon-16x16.png'
-import '!file-loader?name=[name].[ext]!./images/favicon-96x96.png'
-import '!file-loader?name=[name].[ext]!./images/favicon-32x32.png'
 import '!file-loader?name=[name].[ext]!./manifest.json'
 import 'file-loader?name=[name].[ext]!./.htaccess'
 import configureStore from './configureStore'

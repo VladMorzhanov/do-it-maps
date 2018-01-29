@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = 'http://127.0.0.1:4000/api/v1/'
+export const API_URL = 'http://127.0.0.1/api/'
 
 /**
  * Parses the JSON returned by a network request
@@ -33,10 +33,14 @@ export function checkStatus (response) {
   throw error
 }
 
-export function login () {
+export function login (email, pwd) {
   return axios({
-    method: 'GET',
-    url: API_URL + '/health-check'
+    headers: {
+      'x-email': email,
+      'x-pwd': pwd
+    },
+    method: 'POST',
+    url: API_URL + 'login'
   })
 }
 

@@ -45,6 +45,7 @@ const ReactBoilerplate = {
         'formidable',
         'twit',
         'debug',
+        'font-awesome',
         'email-validator',
         'jsonwebtoken',
         'express-jwt',
