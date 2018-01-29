@@ -35,7 +35,7 @@ describe('injectReducer decorator', () => {
   })
 
   it('should inject a given reducer', () => {
-    shallow(<ComponentWithReducer/>, {context: {store}})
+    shallow(<ComponentWithReducer />, {context: {store}})
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1)
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer)

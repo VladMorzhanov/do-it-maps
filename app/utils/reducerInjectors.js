@@ -6,8 +6,8 @@ import isString from 'lodash/isString'
 import checkStore from './checkStore'
 import createReducer from '../reducers'
 
-export function injectReducerFactory(store, isValid) {
-  return function injectReducer(key, reducer) {
+export function injectReducerFactory (store, isValid) {
+  return function injectReducer (key, reducer) {
     if (!isValid) checkStore(store)
 
     invariant(
@@ -23,7 +23,7 @@ export function injectReducerFactory(store, isValid) {
   }
 }
 
-export default function getInjectors(store) {
+export default function getInjectors (store) {
   checkStore(store)
 
   return {

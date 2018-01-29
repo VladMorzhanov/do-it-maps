@@ -13,17 +13,54 @@
 
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
+import '../../styles/css/index.css'
+import reducer from './reducer'
+import injectReducer from 'utils/injectReducer'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
+import {createStructuredSelector} from 'reselect'
+import Auth from '../Auth/Loadable'
+import Home from '../Home/Loadable'
+import About from '../About/Loadable'
+import NotFound from '../NotFoundPage/Loadable'
 
-import HomePage from 'containers/HomePage/Loadable'
-import NotFoundPage from 'containers/NotFoundPage/Loadable'
+export class App extends React.PureComponent {
+  checkAuth () {
 
-export default function App() {
-  return (
-    <div>
-      <Switch>
-        <Route exact path='/' component={HomePage}/>
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
-  )
+  }
+
+  render () {
+    return (
+      <div>
+        <Switch>
+          <Route onEnter={this.checkAuth} exact path='/' component={Home}/>
+          <Route path='/about' component={About}/>
+          <Route path='/auth' component={Auth}/>
+          <Route path='*' exact={true} component={NotFound}/>
+        </Switch>
+      </div>
+    )
+  }
 }
+
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired
+}
+
+const mapStateToProps = createStructuredSelector({})
+
+function mapDispatchToProps (dispatch) {
+  return {
+    dispatch
+  }
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+const withReducer = injectReducer({key: 'global', reducer})
+
+export default compose(
+  withReducer,
+  withConnect
+)(App)

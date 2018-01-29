@@ -14,7 +14,7 @@ import * as sagaInjectors from '../sagaInjectors'
 // Fixtures
 const Component = () => null
 
-function* testSaga() {
+function * testSaga () {
   yield put({type: 'TEST', payload: 'yup'})
 }
 

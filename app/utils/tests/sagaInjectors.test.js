@@ -9,7 +9,7 @@ import configureStore from '../../configureStore'
 import getInjectors, {ejectSagaFactory, injectSagaFactory} from '../sagaInjectors'
 import {DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT} from '../constants'
 
-function* testSaga() {
+function * testSaga () {
   yield put({type: 'TEST', payload: 'yup'})
 }
 
@@ -181,7 +181,7 @@ describe('injectors', () => {
       store.injectedSagas.test = {saga: testSaga, task: {cancel}}
       store.runSaga = jest.fn()
 
-      function* testSaga1() {
+      function * testSaga1 () {
         yield put({type: 'TEST', payload: 'yup'})
       }
 
@@ -196,7 +196,7 @@ describe('injectors', () => {
       const cancel = jest.fn()
       store.injectedSagas.test = {saga: testSaga, task: {cancel}, mode: RESTART_ON_REMOUNT}
 
-      function* testSaga1() {
+      function * testSaga1 () {
         yield put({type: 'TEST', payload: 'yup'})
       }
 
