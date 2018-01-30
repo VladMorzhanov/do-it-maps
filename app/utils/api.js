@@ -2,37 +2,6 @@ import axios from 'axios'
 
 export const API_URL = 'http://127.0.0.1/api/'
 
-/**
- * Parses the JSON returned by a network request
- *
- * @param  {object} response A response from a network request
- *
- * @return {object}          The parsed JSON from the request
- */
-export function parseJSON (response) {
-  if (response.status === 204 || response.status === 205) {
-    return null
-  }
-  return response.json()
-}
-
-/**
- * Checks if a network request came back fine, and throws an error if not
- *
- * @param  {object} response   A response from a network request
- *
- * @return {object|undefined} Returns either the response, or throws an error
- */
-export function checkStatus (response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response
-  }
-
-  const error = new Error(response.statusText)
-  error.response = response
-  throw error
-}
-
 export function login (email, pwd) {
   return axios({
     headers: {
@@ -54,61 +23,33 @@ export function getUser (token) {
   })
 }
 
-export function getSettings (token, secret) {
+export function getMarkers (token) {
   return axios({
     headers: {
-      'key': token,
-      'secret': secret
+      'x-token': token
     },
     method: 'GET',
-    url: API_URL + '/twitter/user/settings'
+    url: API_URL + 'marker'
   })
 }
 
-export function getTweets (token, secret) {
+export function putMarkers (token, markers) {
   return axios({
     headers: {
-      'key': token,
-      'secret': secret
+      'x-token': token
     },
-    method: 'GET',
-    url: API_URL + '/twitter/tweets'
+    data: markers,
+    method: 'PUT',
+    url: API_URL + '/marker'
   })
 }
 
-export function getSearch (token, secret, word) {
+export function deleteMarkers (token) {
   return axios({
     headers: {
-      'key': token,
-      'secret': secret,
-      'word': word
+      'x-token': token
     },
-    method: 'GET',
-    url: API_URL + '/twitter/search'
-  })
-}
-
-export function getStatuses (token, secret) {
-  return axios({
-    headers: {
-      'key': token,
-      'secret': secret
-    },
-    method: 'GET',
-    url: API_URL + '/twitter/statuses'
-  })
-}
-
-export function postTweet (token, secret, tweet) {
-  return axios({
-    headers: {
-      'key': token,
-      'secret': secret
-    },
-    data: {
-      tweet: tweet
-    },
-    method: 'POST',
-    url: API_URL + '/twitter/tweet'
+    method: 'DELETE',
+    url: API_URL + '/marker'
   })
 }
