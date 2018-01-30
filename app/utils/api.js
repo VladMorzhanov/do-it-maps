@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const API_URL = 'http://127.0.0.1/api/'
-// export const API_URL = 'https://do-it-maps.herokuapp.com/api/'
+// export const API_URL = 'http://127.0.0.1/api/'
+export const API_URL = 'https://do-it-maps.herokuapp.com/api/'
 
 export function login (email, pwd) {
   return axios({
