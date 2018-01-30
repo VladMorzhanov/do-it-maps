@@ -20,6 +20,8 @@ const MessagesWrapper = styled.div`
 const Message = styled.p`
     font-family: Helvetica, sans-serif;
     background: #249cff;
+    width: 300px;
+    height: auto;
     padding: 20px;
     font-size: 16px;
     color: #f4fcff;

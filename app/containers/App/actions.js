@@ -6,7 +6,7 @@
 
 import {
   ADD_MESSAGE,
-  HIDE_LOADER_ACTION, REMOVE_MESSAGE,
+  HIDE_LOADER_ACTION, LOG_OUT, REMOVE_MESSAGE,
   SHOW_LOADER_ACTION
 } from './constants'
 import {
@@ -14,6 +14,11 @@ import {
   LOGIN_SUCCESS_ACTION
 } from '../Auth/constants'
 
+export function logOut () {
+  return {
+    type: LOG_OUT
+  }
+}
 export function showLoader () {
   return {
     type: SHOW_LOADER_ACTION

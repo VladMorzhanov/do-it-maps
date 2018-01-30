@@ -7,10 +7,12 @@
 import {fromJS, List, Map} from 'immutable'
 import DefaultPhotoUrl from '../../images/def_photo.png'
 import {
-  ADD_MARKER, CHANGE_CENTER, CHANGE_ZOOM, CLEAR_MARKERS, DELETE_MARKERS,
-  FETCH_MARKERS_SUCCESS_ACTION, FETCH_USER_SUCCESS_ACTION,
-  MAP_DATA_TYPE_MARKERS, POPULAR_TYPE_NONE, SAVE_MARKERS_SUCCESS_ACTION
+  ADD_MARKER, CHANGE_CENTER, CHANGE_MAP_DATA_TYPE, CHANGE_POPULAR_TYPE,
+  CHANGE_ZOOM, CLEAR_MARKERS, DELETE_MARKERS, FETCH_MARKERS_SUCCESS_ACTION,
+  FETCH_USER_SUCCESS_ACTION, MAP_DATA_TYPE_MARKERS, POPULAR_TYPE_NONE,
+  SAVE_MARKERS_SUCCESS_ACTION
 } from './constants'
+import {LOG_OUT} from '../App/constants'
 
 const initialState = fromJS({
   user: {
@@ -21,7 +23,7 @@ const initialState = fromJS({
   zoom: 12,
   popularType: POPULAR_TYPE_NONE,
   mapDataType: MAP_DATA_TYPE_MARKERS,
-  center: [54.98, 82.89]
+  center: [46.443, 30.773]
 })
 
 function homeReducer (state = initialState, action) {
@@ -54,6 +56,12 @@ function homeReducer (state = initialState, action) {
       return state.set('markers', new List([]))
         .set('mapDataType', MAP_DATA_TYPE_MARKERS)
         .set('popularType', POPULAR_TYPE_NONE)
+    case LOG_OUT:
+      return fromJS(initialState)
+    case CHANGE_MAP_DATA_TYPE:
+      return state.set('mapDataType', action.mapDataType)
+    case CHANGE_POPULAR_TYPE:
+      return state.set('popularType', action.popularType)
     default:
       return state
   }

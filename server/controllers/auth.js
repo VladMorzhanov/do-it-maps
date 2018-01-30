@@ -3,6 +3,7 @@ const AuthService = require('../services/auth-service')
 const UserService = require('../services/user-service')
 const CustomError = require('../error/custom-error')
 const {SC, EC, SALT} = require('../constants')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
 
@@ -11,6 +12,8 @@ module.exports = {
     if (!headers['x-email'] || !headers['x-pwd']) {
       return next(new CustomError('Data not provided', EC.DATA_NOT_PROVIDED))
     }
+
+    console.log(headers)
 
     let user
     try {
@@ -49,6 +52,8 @@ module.exports = {
     if (!headers['x-facebook-id'] || !headers['x-email']) {
       return next(new CustomError('Data not provided', EC.DATA_NOT_PROVIDED))
     }
+
+    console.log(headers)
 
     // find user by facebook id
     let user
@@ -112,6 +117,7 @@ module.exports = {
         }
       }
     } catch (e) {
+      console.log(e)
       return next(e)
     }
 
@@ -147,6 +153,8 @@ module.exports = {
     if (!headers['x-google-id'] || !headers['x-email']) {
       return next(new CustomError('Data not provided', EC.DATA_NOT_PROVIDED))
     }
+
+    console.log(headers)
 
     // find user by google id
     let user

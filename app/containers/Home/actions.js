@@ -5,7 +5,9 @@
  */
 
 import {
-  ADD_MARKER, CHANGE_CENTER, CHANGE_ZOOM, CLEAR_MARKERS, DELETE_MARKERS,
+  ADD_MARKER, CHANGE_CENTER, CHANGE_MAP_DATA_TYPE, CHANGE_POPULAR_TYPE,
+  CHANGE_ZOOM, CLEAR_MARKERS,
+  DELETE_MARKERS,
   FETCH_MARKERS_FAILURE_ACTION, FETCH_MARKERS_REQUEST_ACTION,
   FETCH_MARKERS_SUCCESS_ACTION, FETCH_USER_FAILURE_ACTION,
   FETCH_USER_REQUEST_ACTION, FETCH_USER_SUCCESS_ACTION,
@@ -76,6 +78,20 @@ export function fetchMarkersDataFailure (err) {
 export function clearMarkers () {
   return {
     type: CLEAR_MARKERS
+  }
+}
+
+export function changePopularType (type) {
+  return {
+    popularType: type,
+    type: CHANGE_POPULAR_TYPE
+  }
+}
+
+export function changeMapDataType (type) {
+  return {
+    mapDataType: type,
+    type: CHANGE_MAP_DATA_TYPE
   }
 }
 

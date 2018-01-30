@@ -13,6 +13,30 @@ export function login (email, pwd) {
   })
 }
 
+export function facebookLogin (email, facebookId, photo) {
+  return axios({
+    headers: {
+      'x-email': email,
+      'x-facebook-id': facebookId,
+      'x-photo': photo
+    },
+    method: 'POST',
+    url: API_URL + 'facebook-auth'
+  })
+}
+
+export function googleLogin (email, googleId, photo) {
+  return axios({
+    headers: {
+      'x-email': email,
+      'x-google-id': googleId,
+      'x-photo': photo
+    },
+    method: 'POST',
+    url: API_URL + 'google-auth'
+  })
+}
+
 export function getUser (token) {
   return axios({
     headers: {

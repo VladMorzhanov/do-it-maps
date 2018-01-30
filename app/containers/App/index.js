@@ -16,6 +16,7 @@ import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import '../../styles/css/index.css'
 import reducer from './reducer'
 import injectReducer from 'utils/injectReducer'
+import injectSaga from 'utils/injectSaga'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
@@ -26,12 +27,18 @@ import Home from '../Home/Loadable'
 import About from '../About/Loadable'
 import NotFound from '../NotFoundPage/Loadable'
 import {removeMessage} from './actions'
-import {makeSelectToken} from './selectors'
+import {makeSelectMessages, makeSelectToken} from './selectors'
+import saga from './saga'
+import {MessageManager} from '../../utils/MessageManager'
 
 export class App extends React.PureComponent {
   constructor () {
     super()
     this.checkAuthorized = this.checkAuthorized.bind(this)
+  }
+
+  componentWillMount () {
+    MessageManager.init(this.props.dispatch)
   }
 
   checkAuthorized () {
@@ -59,7 +66,13 @@ export class App extends React.PureComponent {
               <Redirect to='/'/>
             )
           )}/>
-          <Route path='/about' component={About}/>
+          <Route exact path='/about' render={() => (
+            this.checkAuthorized() ? (
+              <About/>
+            ) : (
+              <Redirect to='/auth'/>
+            )
+          )}/>
           <Route path='*' exact component={NotFound}/>
         </Switch>
         <Messages
@@ -75,7 +88,8 @@ App.propTypes = {
 }
 
 const mapStateToProps = createStructuredSelector({
-  token: makeSelectToken()
+  token: makeSelectToken(),
+  messages: makeSelectMessages()
 })
 
 function mapDispatchToProps (dispatch) {
@@ -88,8 +102,10 @@ function mapDispatchToProps (dispatch) {
 const withConnect = connect(mapStateToProps, mapDispatchToProps)
 
 const withReducer = injectReducer({key: 'global', reducer})
+const withSaga = injectSaga({key: 'global', saga})
 
 export default withRouter(compose(
   withReducer,
+  withSaga,
   withConnect
 )(App))

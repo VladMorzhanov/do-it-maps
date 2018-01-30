@@ -7,11 +7,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {List} from 'immutable'
 import {createStructuredSelector} from 'reselect'
 import {compose} from 'redux'
 import Sidebar from '../../components/Sidebar/Loadable'
 import Map from '../../components/Map/Loadable'
 import injectSaga from 'utils/injectSaga'
+import {routerActions} from 'react-router-redux'
 import injectReducer from 'utils/injectReducer'
 import {
   makeSelectCenter, makeSelectMapDataType, makeSelectMarkers,
@@ -21,9 +23,17 @@ import reducer from './reducer'
 import saga from './saga'
 import styled from 'styled-components'
 import {
-  addMarker, changeCenter, changeZoom, clearMarkers, deleteMarkers,
-  fetchMarkersDataRequest, fetchUserDataRequest, saveMarkersDataRequest
+  addMarker, changeCenter, changeMapDataType, changePopularType,
+  changeZoom, clearMarkers, deleteMarkers, fetchMarkersDataRequest,
+  fetchUserDataRequest, saveMarkersDataRequest
 } from './actions'
+import {logOut} from '../App/actions'
+import {
+  MAP_DATA_TYPE_MARKERS, MAP_DATA_TYPE_POPULAR, POPULAR_TYPE_GAS,
+  POPULAR_TYPE_NONE, POPULAR_TYPE_PHARMA, POPULAR_TYPE_REUSTARANTS,
+  POPULAR_TYPE_SCHOOL
+} from './constants'
+import PopularProvider from '../../utils/PopularProvider'
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -37,6 +47,12 @@ export class Home extends React.PureComponent {
     super()
     this.deleteMarkers = this.deleteMarkers.bind(this)
     this.enableGeo = this.enableGeo.bind(this)
+    this.toAuthorPage = this.toAuthorPage.bind(this)
+    this.logOut = this.logOut.bind(this)
+  }
+
+  toAuthorPage () {
+    this.props.dispatch(routerActions.push('/about'))
   }
 
   componentWillMount () {
@@ -51,6 +67,12 @@ export class Home extends React.PureComponent {
     if (window.confirm('Are you really want to delete all markers ?')) {
       this.props.dispatch(deleteMarkers())
     }
+  }
+
+  logOut () {
+    window.localStorage.clear()
+    this.props.logOut()
+    this.props.dispatch(routerActions.push('/auth'))
   }
 
   enableGeo () {
@@ -84,15 +106,42 @@ export class Home extends React.PureComponent {
   }
 
   render () {
+    const email = this.props.user.email
+    let markers = this.props.markers
+
+    if (this.props.mapDataType === MAP_DATA_TYPE_POPULAR) {
+      switch (this.props.popularType) {
+        case POPULAR_TYPE_NONE:
+          markers = new List([])
+          break
+        case POPULAR_TYPE_PHARMA:
+          markers = new List(PopularProvider.pharmacies)
+          break
+        case POPULAR_TYPE_GAS:
+          markers = new List(PopularProvider.gas)
+          break
+        case POPULAR_TYPE_REUSTARANTS:
+          markers = new List(PopularProvider.restaurants)
+          break
+        case POPULAR_TYPE_SCHOOL:
+          markers = new List(PopularProvider.schools)
+          break
+      }
+    }
+
     return (
       <HomeWrapper>
         <Sidebar user={this.props.user}
                  saveMarkers={this.props.saveMarkers}
                  fetchMarkers={this.props.fetchMarkers}
+                 changePopularType={this.props.changePopularType}
                  deleteMarkers={(e) => this.deleteMarkers(e)}
                  clearMarkers={this.props.clearMarkers}
+                 toAuthorPage={() => this.toAuthorPage()}
+                 logOut={() => this.logOut()}
                  popularType={this.props.popularType}/>
-        <Map markers={this.props.markers}
+        <Map markers={markers}
+             username={email.substring(0, email.indexOf('@'))}
              zoom={this.props.zoom}
              center={this.props.center}
              changeZoom={this.props.changeZoom}
@@ -120,11 +169,24 @@ function mapDispatchToProps (dispatch) {
   return {
     dispatch,
     fetchUser: (v) => dispatch(fetchUserDataRequest(v)),
-    fetchMarkers: (v) => dispatch(fetchMarkersDataRequest(v)),
+    changePopularType: (v) => {
+      dispatch(changePopularType(v))
+      dispatch(changeMapDataType(MAP_DATA_TYPE_POPULAR))
+    },
+    fetchMarkers: (v) => {
+      dispatch(changePopularType(POPULAR_TYPE_NONE))
+      dispatch(fetchMarkersDataRequest(v))
+      dispatch(changeMapDataType(MAP_DATA_TYPE_MARKERS))
+    },
     saveMarkers: (v) => dispatch(saveMarkersDataRequest(v)),
-    clearMarkers: (v) => dispatch(clearMarkers(v)),
+    clearMarkers: (v) => {
+      dispatch(changePopularType(POPULAR_TYPE_NONE))
+      dispatch(clearMarkers(v))
+      dispatch(changeMapDataType(MAP_DATA_TYPE_MARKERS))
+    },
     addMarker: (v) => dispatch(addMarker(v)),
     changeCenter: (v) => dispatch(changeCenter(v)),
+    logOut: (v) => dispatch(logOut(v)),
     changeZoom: (v) => dispatch(changeZoom(v))
   }
 }

@@ -6,6 +6,8 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import {Avatar} from './Avatar'
+import {LogOut} from './LogOut'
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -13,24 +15,21 @@ const ProfileWrapper = styled.div`
   justify-content: center;
   align-items: center;  
   width: 100%;
-  height: 200px;
-  background-color:#6db19e;
+  height: 180px;
+  background-color:#7dbeff;
   .name{
-    
+    margin-top: 10px;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    color: #ffffff;
   }
-`
-
-const Avatar = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid #fff;
 `
 
 function Profile (props) {
   const email = props.user.email
   return (
     <ProfileWrapper>
+      <LogOut onClick={() => props.logOut()} className="fa fa-sign-out"/>
       <Avatar src={props.user.photoUrl}/>
       <p className="name">{email.substring(0, email.indexOf('@'))}</p>
     </ProfileWrapper>

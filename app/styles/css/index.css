@@ -4,32 +4,58 @@
   width: 250px;
   height: 40px;
   color: #ffffff;
-  cursor: pointer;
-}
+  cursor: pointer; }
+  .twitter-button:hover {
+    background-color: rgba(59, 48, 93, 0.65); }
 
-.twitter-button:hover {
-  background-color: rgba(59, 48, 93, 0.65);
-}
+.facebook-button {
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 10px;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  transition: 200ms ease all;
+  background-color: #4a54ff;
+  margin-right: 5px; }
+  .facebook-button:hover {
+    background-color: #3036b0; }
+
+.google-button {
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 10px;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  transition: 200ms ease all;
+  background-color: #ff5b43;
+  margin-left: 5px; }
+  .google-button:hover {
+    background-color: #b84730; }
 
 html, body, #root, [data-reactroot] {
-  height: 100% !important;
-}
+  height: 100% !important; }
 
 textarea, input, button {
-  outline: none !important;
-}
+  outline: none !important; }
 
 body {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 #app {
-  height: 100%;
-}
+  height: 100%; }
 
 [data-reactroot] {
-  height: 100% !important;
-}
+  height: 100% !important; }
 
 /*# sourceMappingURL=index.css.map */

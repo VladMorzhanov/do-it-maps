@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.5.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "do-it-maps",
+  "version": "1.0.5",
+  "description": "2Gis maps",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "https://github.com/VladMorzhanov/do-it-maps"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Vlad Morzhanov",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -161,6 +161,8 @@
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
+    "react-facebook-login": "^3.7.2",
+    "react-google-login": "^3.0.4",
     "react-helmet": "5.1.3",
     "react-immutable-proptypes": "^2.1.0",
     "react-intl": "2.3.0",
@@ -168,6 +170,7 @@
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-social-login": "^3.4.2",
     "react-validation": "^2.10.9",
     "redux": "3.6.0",
     "redux-immutable": "4.0.0",

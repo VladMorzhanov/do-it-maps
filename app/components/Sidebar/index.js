@@ -14,7 +14,7 @@ const SidebarWrapper = styled.div`
   flex-direction: column;
   width: 250px;
   height: 100%;
-  background-color:#9fffe4;
+  background-color:#7dbeff;
   border-right: 2px solid #000;
   padding-bottom: 20px;
   .buttons{
@@ -32,7 +32,7 @@ const Button = styled.div`
   height: 40px;
   margin-bottom: 10px;
   font-size: 18px;
-  background-color:#6690ff;
+  background-color:#4f6ec4;
   line-height: 40px;
   cursor: pointer;
   color: #ffffff;
@@ -41,13 +41,13 @@ const Button = styled.div`
   text-align: center;
   transition: 200ms ease all;
   &:hover{
-      background-color:#6690a9;
+      background-color:#5880e1;
   }
   &.about{
     margin-top: 20px;
-    background-color:#c97eff;
+    background-color:#7862c9;
     &:hover{
-      background-color:#8555a9;
+      background-color:#906fed;
     }
   }
 `
@@ -55,14 +55,15 @@ const Button = styled.div`
 function Sidebar (props) {
   return (
     <SidebarWrapper>
-      <Profile user={props.user}/>
-      <Popular/>
+      <Profile logOut={props.logOut} user={props.user}/>
+      <Popular popularType={props.popularType} changePopularType={props.changePopularType}/>
       <div className="buttons">
         <Button onClick={(e) => props.fetchMarkers(e)}>Show Markers</Button>
         <Button onClick={(e) => props.saveMarkers(e)}>Save Markers</Button>
         <Button onClick={(e) => props.deleteMarkers(e)}>Delete Markers</Button>
         <Button onClick={(e) => props.clearMarkers(e)}>Clear Map</Button>
-        <Button className="about">About</Button>
+        <Button onClick={(e) => props.toAuthorPage(e)}
+                className="about">About author</Button>
       </div>
     </SidebarWrapper>
   )

@@ -9,9 +9,9 @@ const bnCrypt = require('bcrypt-nodejs')
 const User = new Schema(
   {
     email: {type: String, unique: true, default: 'NaN'},
-    googleId: {type: String, unique: true, default: 'NaN'},
-    facebookId: {type: String, unique: true, default: 'NaN'},
-    photoUrl: {type: String, unique: true, default: 'NaN'},
+    googleId: {type: String, default: 'NaN'},
+    facebookId: {type: String, default: 'NaN'},
+    photoUrl: {type: String, default: 'NaN'},
     password: {type: String, required: true},
     token: {type: String, default: 'NaN'}
   })

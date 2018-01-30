@@ -8,6 +8,7 @@ const {EC, SC} = require('../constants/index')
  */
 function errorHandler () {
   return (e, request, response, next) => {
+    console.log(e)
     info('Error happend: %o', e)
     debug('Error happend: ', e.message)
 

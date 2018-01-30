@@ -14,6 +14,11 @@ const makeSelectLoaded = () => createSelector(
   (globalState) => globalState.get('loaded')
 )
 
+const makeSelectMessages = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('messages')
+)
+
 const makeSelectToken = () => createSelector(
   selectGlobal,
   (globalState) => globalState.get('token')
@@ -22,5 +27,6 @@ const makeSelectToken = () => createSelector(
 export {
   makeSelectLocation,
   makeSelectLoaded,
-  makeSelectToken
+  makeSelectToken,
+  makeSelectMessages
 }

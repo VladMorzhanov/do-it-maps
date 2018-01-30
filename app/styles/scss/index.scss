@@ -1,6 +1,8 @@
 @import "constants.scss";
 @import "components/menu.scss";
 @import "mixins/buttons.scss";
+@import "components/facebook-button.scss";
+@import "components/google-button.scss";
 @import "mixins/functions.scss";
 
 html, body, #root, [data-reactroot] {
