@@ -36,7 +36,7 @@ export function loginFailure (error) {
 export function facebookLoginRequest ( email, facebookId, photo) {
   return {
     email: email,
-    googleId: facebookId,
+    facebookId: facebookId,
     photoUrl: photo,
     type: FB_LOGIN_REQUEST_ACTION
   }

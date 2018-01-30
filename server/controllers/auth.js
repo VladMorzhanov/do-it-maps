@@ -53,6 +53,8 @@ module.exports = {
       return next(new CustomError('Data not provided', EC.DATA_NOT_PROVIDED))
     }
 
+    console.log('facebookid = ' + headers['x-facebook-id'])
+
     console.log(headers)
 
     // find user by facebook id
@@ -153,6 +155,8 @@ module.exports = {
     if (!headers['x-google-id'] || !headers['x-email']) {
       return next(new CustomError('Data not provided', EC.DATA_NOT_PROVIDED))
     }
+
+    console.log('googleid = ' + headers['x-google-id'])
 
     console.log(headers)
 
