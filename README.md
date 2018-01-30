@@ -11,8 +11,9 @@ https://do-it-maps.herokuapp.com/
 ### Run dev server with HMR
 
 1. npm i
-2. add MONGO_URL to process.env variable
-3. npm start
+2. create Facebook and Google API key into Auth component
+3. add MONGO_URL to process.env variable
+4. npm start
 
 ### Run production
 
