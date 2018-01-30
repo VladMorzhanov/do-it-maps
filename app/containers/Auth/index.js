@@ -147,8 +147,10 @@ export class Auth extends React.PureComponent {
               callback={this.handleFacebookSuccess}/>
             <GoogleLogin
               className="google-button"
-              // clientId="845786820006-02otitfno2vhrj0fiavh02gm3ohnm5ve.apps.googleusercontent.com"
-              clientId="845786820006-5ed6u705rmb6lrbqttr0s2g6qqc42u80.apps.googleusercontent.com"
+              // localhost
+              clientId="845786820006-02otitfno2vhrj0fiavh02gm3ohnm5ve.apps.googleusercontent.com"
+              // heroku
+              // clientId="845786820006-5ed6u705rmb6lrbqttr0s2g6qqc42u80.apps.googleusercontent.com"
               buttonText="Google"
               onSuccess={this.handleGoogleSuccess}
               onFailure={this.handleGoogleFailure}
