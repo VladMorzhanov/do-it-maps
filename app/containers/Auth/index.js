@@ -141,9 +141,9 @@ export class Auth extends React.PureComponent {
           <div className='social'>
             <FacebookLogin
               // local
-              // appId="336286580204732"
+              appId="336286580204732"
               // heroku
-              appId="192240534855789"
+              // appId="192240534855789"
               cssClass="facebook-button"
               textButton="Facebook"
               fields="email,picture.type(large)"
@@ -151,9 +151,9 @@ export class Auth extends React.PureComponent {
             <GoogleLogin
               className="google-button"
               // localhost
-              // clientId="948851556336-j8nvssf5ir85rh3t12k9q8ifbrv7e1ha.apps.googleusercontent.com"
+              clientId="948851556336-j8nvssf5ir85rh3t12k9q8ifbrv7e1ha.apps.googleusercontent.com"
               // heroku
-              clientId="845786820006-5ed6u705rmb6lrbqttr0s2g6qqc42u80.apps.googleusercontent.com"
+              // clientId="845786820006-5ed6u705rmb6lrbqttr0s2g6qqc42u80.apps.googleusercontent.com"
               buttonText="Google"
               onSuccess={this.handleGoogleSuccess}
               onFailure={this.handleGoogleFailure}
