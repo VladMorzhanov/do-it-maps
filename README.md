@@ -20,7 +20,8 @@ Simple application that works with 2Gis Maps API.
 ### Deploy on Heroku (remove build folder from .gitignore)
 
 1. create app on Heroku
-2. heroku login
-3. heroku git:remote -a do-it-maps
-4. heroku ps:scale web=1
-5. git push heroku master
+2. add MONGO_URL to Settings/vars
+3. heroku login
+4. heroku git:remote -a do-it-maps
+5. heroku ps:scale web=1
+6. git push heroku master
