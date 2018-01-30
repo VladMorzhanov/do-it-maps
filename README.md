@@ -2,6 +2,10 @@
 
 Simple application that works with 2Gis Maps API.
 
+## Demo
+
+https://do-it-maps.herokuapp.com/
+
 ## Installation
 
 ### Run dev server with HMR
