@@ -30,3 +30,14 @@ https://do-it-maps.herokuapp.com/
 4. heroku git:remote -a do-it-maps
 5. heroku ps:scale web=1
 6. git push heroku master
+
+## Author
+
+Vlad Morzhanov
+
+## License
+
+#### (The MIT License)
+
+Copyright (c) 2018 Vlad Morzhanov.
+You can review license in the LICENSE file.
