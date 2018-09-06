@@ -1,5 +1,7 @@
 # Do IT Maps
 
+<img src="https://i.imgur.com/NbQMQTu.png"/>
+
 Simple application that works with 2Gis Maps API.
 
 ## Demo
